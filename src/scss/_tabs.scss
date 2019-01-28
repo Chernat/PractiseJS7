@@ -1,0 +1,27 @@
+.tabs {
+  width: 800px;
+  margin: 0 auto;
+
+  &__title {
+    display: flex;
+  }
+
+  &__btn {
+    margin-right: 10px;
+    padding: 15px;
+    &:last-child {
+      margin-right: 10px;
+    }
+
+    &--active {
+      background-color: #ccc;
+    }
+  }
+
+  &__text {
+    display: none;
+    &--active {
+      display: block;
+    }
+  }
+}
