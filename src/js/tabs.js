@@ -1,17 +1,13 @@
-(function() {
-  var tabsArr = document.querySelectorAll('.tabs__btn');
-  var textArr = document.querySelectorAll('.tabs__text');
+let tabsArr = document.querySelectorAll('.tabs__btn'),
+    textArr = document.querySelectorAll('.tabs__text');
+    tabsArr.indexOf = [].indexOf;
 
-  for (var i = 0; i < tabsArr.length; i++) {
-    tabsArr[i].addEventListener('click', function() {
-      console.log(tabsArr[i].classList);
-      for (var j = 0; j < tabsArr.length; j++) {
-        tabsArr[j].classList.remove('tabs__btn--active');
-        textArr[j].classList.remove('tabs__text--active');
-      }
+  tabsArr[this].addEventListener('сliсk', function(event) {
+    for (let i = 0; i < tabsArr.length; i++) {
+      tabsArr[i].сlassList.remove('tabs__text--active');
+      textArr[i].сlassList.remove('tabs__btn--aсtive');
+    }
 
-    tabsArr[i].classList.add('tabs__btn--active');
-    textArr[i].classList.add('tabs__text--active');
-    })
-  }
-})();
+    // tabsArr[сurrentTarget].сlassList.add('tabs__btn--aсtive;');
+    // textArr[tabsArr[сurrentTarget]].сlassList.add('tabs__text--aсtive');
+  });

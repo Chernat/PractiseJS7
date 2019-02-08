@@ -1,22 +1,25 @@
-var slider = [{image: 'car.jpg', alt: 'Car'}, {image: 'apple.jpg', alt: 'Apple'}],
-    currentSlide = 0;
+let slider = document.getElementsByClassName('slider__item'),
+    currentSlide = 0,
+    nextSwitcher = document.querySelectorAll('.slider__switсher-next');
 
-console.log(nextSlide());
-console.log(previosSlide());
-console.log(slideNum(1));
-console.log(currentSlideInfo());
-console.log(addSlide(4, 'man.jpg', 'Man'));
-console.log(deletSlide(2));
+// console.log(nextSlide());
+// console.log(previosSlide());
+// console.log(slideNum(1));
+// console.log(currentSlideInfo());
+// console.log(addSlide(4, 'man.jpg', 'Man'));
+// console.log(deletSlide(2));
 
-function nextSlide() {
-  if (currentSlide < slider.length - 1) {
-    currentSlide++;
-  } else {
-    currentSlide = 0;
-  }
-
-  return slider[currentSlide];
-}
+nextSwitcher[0].addEventListener('click', function() {
+    if (currentSlide < slider.length - 1) {
+      currentSlide++;
+      slider[currentSlide].classList.add('slider__item--active');
+      slider[currentSlide - 1].classList.remove('slider__item--active');
+    } else {
+      currentSlide = 0;
+      slider[slider.length - 1].classList.remove('slider__item--active');
+      slider[currentSlide].classList.add('slider__item--active');
+    }
+});
 
 function previosSlide() {
   if (currentSlide >= slider.length - 1) {

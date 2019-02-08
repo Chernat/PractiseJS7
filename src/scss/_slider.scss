@@ -1,0 +1,27 @@
+.slider {
+  margin: auto 0;
+
+  &__block {
+    position: relative;
+    display: block;
+  }
+
+  &__switсher-next {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    font-size: 34px;
+    &:hover {
+      сursor: pointer;
+    }
+  }
+
+  &__item {
+    display: none;
+    width: 100%;
+
+    &--active {
+      display: block;
+    }
+  }
+}
