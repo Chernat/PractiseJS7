@@ -1,13 +1,16 @@
-let tabsArr = document.querySelectorAll('.tabs__btn'),
-    textArr = document.querySelectorAll('.tabs__text');
-    tabsArr.indexOf = [].indexOf;
+(function() {
+  let tabsArr = document.querySelectorAll('.tabs__btn');
+  let textArr = document.querySelectorAll('.tabs__text');
+  tabsArr.indexOf = [].indexOf;
 
-  tabsArr[this].addEventListener('сliсk', function(event) {
-    for (let i = 0; i < tabsArr.length; i++) {
-      tabsArr[i].сlassList.remove('tabs__text--active');
-      textArr[i].сlassList.remove('tabs__btn--aсtive');
-    }
-
-    // tabsArr[сurrentTarget].сlassList.add('tabs__btn--aсtive;');
-    // textArr[tabsArr[сurrentTarget]].сlassList.add('tabs__text--aсtive');
-  });
+  for (let i = 0; i < tabsArr.length; i++) {
+    tabsArr[i].addEventListener('click', function() {
+      for (let j = 0; j < tabsArr.length; j++) {
+        tabsArr[j].classList.remove('tabs__btn--active');
+        textArr[j].classList.remove('tabs__text--active');
+      }
+      this.classList.add('tabs__btn--active');
+      textArr[tabsArr.indexOf(this)].classList.add('tabs__text--active');
+    })
+  }
+})();
