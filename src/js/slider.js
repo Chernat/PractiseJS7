@@ -4,6 +4,7 @@ let slider = document.getElementsByClassName('slider__item'),
     sliderNum = document.querySelectorAll('.slider__btn--num'),
     sliderInfo = document.querySelectorAll('.slider__btn--info'),
     removeSlide = document.querySelectorAll('.slider__btn--remove'),
+    addSlide = document.querySelectorAll('.slider__btn--add'),
     currentSlide = 0;
 
 nextSwitcher[0].addEventListener('click', function() {
@@ -56,34 +57,28 @@ removeSlide[0].addEventListener('click', function() {
   } while ((num > slider.length) || (num < 0));
 
   slider[num - 1].remove();
-  if (currentSlide === num) {
-    currentSlide--;
+  if (((num - 1) >= 0) && ((num - 1) < slider.length)) slider[currentSlide].classList.add('slider__item--active');
+  if ((num - 1) === slider.length && ((num - 1) === currentSlide)) {
+    currentSlide = 0;
+    slider[currentSlide].classList.add('slider__item--active');
   }
 });
 
-function addSlide(num, a, b) {
-  if (num - 1 > slider.length) {
-    slider.push({image: a, alt: b});
-    currentSlide++;
-  } else if (0 === (num - 1)) {
-    slider.unshift({image: a, alt: b});
-    currentSlide++;
+addSlide[0].addEventListener('click', function() {
+  let [num, src, alt, img] = [+prompt('Num',''), prompt('Src', ''), prompt('Alt', ''), document.createElement('img')];
+  img.className = 'slider__item';
+  img.setAttribute('src', src);
+  img.setAttribute('alt', alt);
+
+  if ((num - 1) >= slider.length) {
+    document.querySelectorAll('.slider__block')[0].appendChild(img);
+    slider[currentSlide].classList.remove('slider__item--active');
+    currentSlide = slider.length - 1;
+    slider[currentSlide].classList.add('slider__item--active');
   } else {
-    slider.splice(num - 1, 0, {image: a, alt: b});
-    if (currentSlide === num || currentSlide > num) {
-      currentSlide++;
-    }
+    document.querySelectorAll('.slider__block')[0].insertBefore(img, slider[num - 1]);
+    slider[currentSlide].classList.remove('slider__item--active');
+    currentSlide = num - 1;
+    slider[currentSlide].classList.add('slider__item--active');
   }
-
-  return slider;
-}
-
-function deletSlide(num) {
-  if (num > slider.length - 1) {
-    console.log('failed number');
-  } else {
-    slider.splice(slider.indexOf(num), 1);
-  }
-
-  return slider;
-}
+});
