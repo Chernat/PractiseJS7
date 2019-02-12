@@ -8,20 +8,20 @@
 
   &__switсher {
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    width: 100px;
+    height: 100%;
     font-size: 34px;
     &:hover {
       сursor: pointer;
     }
 
     &--next {
-      right: 15px;
+      right: 0;
     }
 
     &--prev {
-      left: 15px;
-      transform: translate(+50%, -50%);
+      left: 0;
     }
   }
 

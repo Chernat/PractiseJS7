@@ -7,6 +7,16 @@ let slider = document.getElementsByClassName('slider__item'),
     addSlide = document.querySelectorAll('.slider__btn--add'),
     currentSlide = 0;
 
+nextSwitcher[0].addEventListener('mouseover', function() {
+  let nextSlide = currentSlide + 1;
+  nextSwitcher[0].style.background = `url('../img/${nextSlide}.jpg')`;
+  nextSwitcher[0].style.display = 'block';
+});
+
+nextSwitcher[0].addEventListener('mouseout', function() {
+  nextSwitcher[0].removeAttribute("style");
+})
+
 nextSwitcher[0].addEventListener('click', function() {
     if (currentSlide < slider.length - 1) {
       currentSlide++;
@@ -36,7 +46,7 @@ sliderNum[0].addEventListener('click', function() {
 
   do {
     num = +prompt('Num','');
-  } while ((num > slider.length) || (num < 0));
+  } while (isNaN(num) || (num > slider.length) || (num < 0));
 
   if (currentSlide !== num - 1 && num !== 0) {
     slider[currentSlide].classList.remove('slider__item--active');
@@ -54,7 +64,7 @@ removeSlide[0].addEventListener('click', function() {
 
   do {
     num = +prompt('Num','');
-  } while ((num > slider.length) || (num < 0));
+  } while (isNaN(num) || (num > slider.length) || (num < 0));
 
   slider[num - 1].remove();
   if (((num - 1) >= 0) && ((num - 1) < slider.length)) slider[currentSlide].classList.add('slider__item--active');
@@ -65,17 +75,27 @@ removeSlide[0].addEventListener('click', function() {
 });
 
 addSlide[0].addEventListener('click', function() {
-  let [num, src, alt, img] = [+prompt('Num',''), prompt('Src', ''), prompt('Alt', ''), document.createElement('img')];
+  let num, src, alt, img;
+  img =  document.createElement('img');
   img.className = 'slider__item';
   img.setAttribute('src', src);
   img.setAttribute('alt', alt);
 
-  if ((num - 1) >= slider.length) {
+  do {
+    num = +prompt('Num','');
+  } while (isNaN(num) || (num > slider.length) || (num < 0));
+
+  if (num !== 0) {
+    src = prompt('Src', '');
+    alt = prompt('Alt', '');
+  }
+
+  if ((num !== 0) && (num - 1) >= slider.length) {
     document.querySelectorAll('.slider__block')[0].appendChild(img);
     slider[currentSlide].classList.remove('slider__item--active');
     currentSlide = slider.length - 1;
     slider[currentSlide].classList.add('slider__item--active');
-  } else {
+  } else if (num !== 0) {
     document.querySelectorAll('.slider__block')[0].insertBefore(img, slider[num - 1]);
     slider[currentSlide].classList.remove('slider__item--active');
     currentSlide = num - 1;
