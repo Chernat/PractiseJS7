@@ -8,7 +8,7 @@ let slider = document.getElementsByClassName('slider__item'),
     currentSlide = 0;
 
 nextSwitcher[0].addEventListener('mouseover', function() {
-  let nextSlide = currentSlide + 1;
+  let nextSlide = currentSlide + 2;
   nextSwitcher[0].style.background = `url('../img/${nextSlide}.jpg')`;
   nextSwitcher[0].style.display = 'block';
 });
